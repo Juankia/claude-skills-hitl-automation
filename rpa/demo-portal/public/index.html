@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo E-Filing Portal - Sign in</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="banner">Demo E-Filing Portal <span class="tag">LOCAL DEMO - NOT A REAL COURT</span></header>
+  <main class="card narrow">
+    <h1>Sign in</h1>
+    <form id="login-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit" id="sign-in">Sign in</button>
+      <p id="login-error" class="error" role="alert" hidden></p>
+    </form>
+  </main>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const body = { username: e.target.username.value, password: e.target.password.value };
+      const res = await fetch("/api/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (res.ok) { location.href = "/filing.html"; return; }
+      const err = document.getElementById("login-error");
+      err.textContent = (await res.json()).error; err.hidden = false;
+    });
+  </script>
+</body>
+</html>

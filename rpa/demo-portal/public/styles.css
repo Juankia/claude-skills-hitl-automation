@@ -1,0 +1,20 @@
+:root { --ink: #1d2433; --muted: #5b6475; --line: #d8dde6; --brand: #1f4e79; --danger: #b42318; --bg: #f5f7fa; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+.banner { background: var(--brand); color: #fff; padding: 12px 20px; font-weight: 600; display: flex; gap: 12px; align-items: center; }
+.banner #who { margin-left: auto; font-weight: 400; font-size: 13px; }
+.tag { background: #ffd666; color: #3d2c00; font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+.card { background: #fff; max-width: 640px; margin: 32px auto; padding: 24px 28px; border: 1px solid var(--line); border-radius: 10px; }
+.card.narrow { max-width: 380px; }
+h1 { font-size: 20px; margin: 0 0 16px; }
+label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 13px; }
+label.check { font-weight: 400; display: flex; gap: 8px; align-items: center; margin-top: 16px; }
+input:not([type=checkbox]), select { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; }
+button { margin-top: 18px; padding: 9px 16px; border: 0; border-radius: 6px; background: var(--brand); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+button.secondary { background: #e9edf3; color: var(--ink); }
+button.danger { background: var(--danger); }
+dl { display: grid; grid-template-columns: 160px 1fr; gap: 6px 12px; }
+dt { color: var(--muted); }
+dd { margin: 0; font-weight: 600; }
+.warning { background: #fff4e5; border: 1px solid #ffd8a8; padding: 10px 12px; border-radius: 6px; }
+.error { color: var(--danger); }

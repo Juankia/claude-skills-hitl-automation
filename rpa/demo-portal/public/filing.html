@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo E-Filing Portal - New filing</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="banner">Demo E-Filing Portal <span class="tag">LOCAL DEMO - NOT A REAL COURT</span> <span id="who"></span></header>
+  <main class="card">
+    <section id="step-form">
+      <h1>New filing</h1>
+      <form id="filing-form">
+        <label for="caseNumber">Case number</label>
+        <input id="caseNumber" name="caseNumber" placeholder="26-CV-01234" required>
+        <label for="court">Court</label>
+        <select id="court" name="court" required>
+          <option value="">Select a court</option>
+          <option>Demo County District Court</option>
+          <option>Demo County Probate Court</option>
+          <option>Demo State Court of Appeals</option>
+        </select>
+        <label for="filingType">Filing type</label>
+        <select id="filingType" name="filingType" required>
+          <option value="">Select a type</option>
+          <option value="motion">Motion</option>
+          <option value="complaint">Complaint</option>
+          <option value="notice">Notice</option>
+        </select>
+        <label for="filerName">Filer name</label>
+        <input id="filerName" name="filerName" required>
+        <label for="documentTitle">Document title</label>
+        <input id="documentTitle" name="documentTitle" required>
+        <label class="check"><input type="checkbox" id="certify" name="certify" required> I certify that the information provided is accurate.</label>
+        <button type="submit" id="review">Review filing</button>
+      </form>
+    </section>
+
+    <section id="step-review" hidden>
+      <h1>Review your filing</h1>
+      <dl id="review-list">
+        <dt>Case number</dt><dd data-field="caseNumber"></dd>
+        <dt>Court</dt><dd data-field="court"></dd>
+        <dt>Filing type</dt><dd data-field="filingType"></dd>
+        <dt>Filer name</dt><dd data-field="filerName"></dd>
+        <dt>Document title</dt><dd data-field="documentTitle"></dd>
+      </dl>
+      <p class="warning">Submitting is final. Filings cannot be withdrawn through the portal.</p>
+      <button type="button" id="back" class="secondary">Back</button>
+      <button type="button" id="submit-filing" class="danger">Submit filing</button>
+      <p id="submit-error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section id="step-done" hidden>
+      <h1>Filing received</h1>
+      <p>Confirmation number: <strong id="confirmation"></strong></p>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
