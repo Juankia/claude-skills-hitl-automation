@@ -1,0 +1,15 @@
+{
+  "client_id": "brightwater-ceramics-llc-000000",
+  "case": {
+    "case_number": "26-CV-01234",
+    "court": "Demo County District Court",
+    "case_title": "Brightwater Ceramics LLC v. Mesa Distribution Partners Inc.",
+    "filing_type": "motion",
+    "filer_name": "Dana Whitfield"
+  },
+  "documents": [
+    { "path": "2026-10-09_motion-to-extend.pdf", "type": "motion", "title": "Motion to Extend Time" },
+    { "path": "2026-10-09_proposed-order.pdf", "type": "proposed_order", "title": "Proposed Order" },
+    { "path": "2026-10-09_certificate-of-service.pdf", "type": "certificate_of_service", "title": "Certificate of Service" }
+  ]
+}

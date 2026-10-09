@@ -1,0 +1,44 @@
+{
+  "name": "Demo state court e-filing rules",
+  "version": "2026.1",
+  "description": "Fictional rule set for a generic state-court e-filing portal. Copy this file and adjust it per court; nothing here reflects a real court's local rules.",
+  "required_fields": [
+    "client_id",
+    "case.case_number",
+    "case.court",
+    "case.case_title",
+    "case.filing_type",
+    "case.filer_name"
+  ],
+  "field_patterns": {
+    "case.case_number": {
+      "pattern": "^\\d{2}-(CV|PR|DR)-\\d{5}$",
+      "example": "26-CV-01234"
+    }
+  },
+  "required_documents": {
+    "motion": ["motion", "proposed_order", "certificate_of_service"],
+    "complaint": ["complaint", "civil_cover_sheet", "summons"],
+    "notice": ["notice", "certificate_of_service"]
+  },
+  "file_naming": {
+    "pattern": "^\\d{4}-\\d{2}-\\d{2}_[a-z0-9]+(-[a-z0-9]+)*\\.pdf$",
+    "example": "2026-10-09_motion-to-extend.pdf"
+  },
+  "allowed_extensions": [".pdf"],
+  "max_file_size_mb": 10,
+  "max_pages": {
+    "default": 50,
+    "motion": 25,
+    "proposed_order": 5,
+    "certificate_of_service": 2
+  },
+  "pdf_checks": {
+    "forbid_encryption": "blocking",
+    "require_text_layer": "warning"
+  },
+  "client_checks": {
+    "require_intake_status": "ready",
+    "require_conflict_status": "cleared"
+  }
+}
