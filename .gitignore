@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node
+node_modules/
+rpa/test-results/
+rpa/playwright-report/
+rpa/artifacts/
+rpa/dist/
+
+# Local runtime state / generated drafts
+.client-skills/
+out/
+*.docx
+!skills/**/templates/*.docx
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.env

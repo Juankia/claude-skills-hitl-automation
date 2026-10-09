@@ -1,0 +1,11 @@
+[project]
+name = "claude-skills-hitl-automation"
+version = "0.1.0"
+description = "Claude Agent Skills for a professional-services back office, with a human-in-the-loop RPA agent."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Juan Carlos Amay" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
