@@ -46,7 +46,10 @@ export interface ResolveOptions {
 export async function resolveCredentials(opts: ResolveOptions = {}): Promise<Credentials> {
   const service = opts.service ?? DEFAULT_SERVICE;
   const env = opts.env ?? process.env;
-  const keychain = opts.keychain === undefined ? await loadKeychain() : opts.keychain;
+  // PORTAL_CREDENTIAL_SOURCE=env skips the keychain entirely (CI, tests, containers),
+  // so a headless run can never block on an OS keychain access dialog.
+  const envOnly = env.PORTAL_CREDENTIAL_SOURCE === "env";
+  const keychain = envOnly ? null : opts.keychain === undefined ? await loadKeychain() : opts.keychain;
   const account = opts.account ?? env.PORTAL_USERNAME;
 
   if (keychain) {

@@ -70,6 +70,14 @@ test.describe("resolveCredentials", () => {
     expect((await resolveCredentials({ keychain: new FakeKeychain({}, true), env })).source).toBe("env");
   });
 
+  test("PORTAL_CREDENTIAL_SOURCE=env bypasses the keychain", async () => {
+    const creds = await resolveCredentials({
+      keychain: new FakeKeychain({ "demo.filer": "from-keychain" }),
+      env: { PORTAL_CREDENTIAL_SOURCE: "env", PORTAL_USERNAME: "demo.filer", PORTAL_PASSWORD: "from-env" },
+    });
+    expect(creds.source).toBe("env");
+  });
+
   test("fails clearly when nothing is configured", async () => {
     await expect(resolveCredentials({ keychain: null, env: {} })).rejects.toBeInstanceOf(CredentialsError);
   });

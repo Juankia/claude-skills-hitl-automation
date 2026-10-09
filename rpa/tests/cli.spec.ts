@@ -16,6 +16,7 @@ function agent(args: string[], baseURL: string) {
       ...process.env,
       PORTAL_USERNAME: "demo.filer",
       PORTAL_PASSWORD: "demo-only-password",
+      PORTAL_CREDENTIAL_SOURCE: "env",
     },
     input: "", // non-interactive: stdin is not a TTY
     timeout: 60_000,

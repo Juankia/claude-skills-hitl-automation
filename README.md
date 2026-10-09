@@ -152,6 +152,7 @@ Upload each `dist/<skill>.zip` under **Settings → Capabilities → Skills**. C
   ```bash
   cd rpa && npm run creds:set -- --account demo.filer   # hidden prompt, stored in the keychain
   ```
+- Set `PORTAL_CREDENTIAL_SOURCE=env` to skip the keychain entirely (CI, containers, tests), so an unattended run never blocks on an OS keychain dialog.
 - `keytar` is an **optional** native dependency. If it cannot load (locked keychain, headless CI), the agent quietly falls back to environment variables.
 - **No secrets in the repo.** The only credential is the throwaway password for the local demo portal, and it is documented as such.
 - **The skills work only on local files.** Manifest paths that resolve outside the packet folder (`../escape.pdf`) are rejected.
@@ -163,7 +164,7 @@ Upload each `dist/<skill>.zip` under **Settings → Capabilities → Skills**. C
 | Suite | Count | Covers |
 | --- | --- | --- |
 | `pytest` | 44 | state store (paths per OS, migrations, atomicity), intake normalization & schema/business rules, template engine, reproducible `.docx`, jurisdiction fallback, every packet check, CLI exit codes, installer & SKILL.md frontmatter |
-| Playwright | 19 | gate blocks without approval, wrong token, human denial, token bound to content, matching token submits exactly once, network guard stops a rogue click, bad login, input validation, prompt (`y` rejected, EOF = deny), keychain → env fallback, CLI exit codes, checklist gate |
+| Playwright | 20 | gate blocks without approval, wrong token, human denial, token bound to content, matching token submits exactly once, network guard stops a rogue click, bad login, input validation, prompt (`y` rejected, EOF = deny), keychain → env fallback and env-only mode, CLI exit codes, checklist gate |
 
 CI runs the Python suite on Ubuntu, macOS and Windows, and the Playwright suite against the demo portal with Chromium.
 
