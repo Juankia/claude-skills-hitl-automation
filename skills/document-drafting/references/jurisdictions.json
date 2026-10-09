@@ -1,0 +1,51 @@
+{
+  "_comment": "Illustrative sample language for demonstration only. Not legal advice; every draft requires review by a licensed professional.",
+  "default": {
+    "state_name": "[[REVIEW: jurisdiction not configured]]",
+    "governing_law": "This Agreement is governed by the laws of the state in which the Firm's responsible office is located. [[REVIEW: confirm governing law]]",
+    "fee_dispute_notice": "[[REVIEW: add any mandatory fee-dispute notice for this jurisdiction]]",
+    "record_retention_years": 5,
+    "trust_account_name": "client trust account",
+    "e_signature_note": "The parties agree that electronic signatures are binding to the extent permitted by applicable law."
+  },
+  "CA": {
+    "state_name": "California",
+    "governing_law": "This Agreement is governed by the laws of the State of California.",
+    "fee_dispute_notice": "If a dispute arises about fees, you may have the right to request non-binding fee arbitration through the applicable local bar association program before any lawsuit is filed.",
+    "record_retention_years": 5,
+    "trust_account_name": "client trust account (IOLTA)",
+    "e_signature_note": "The parties consent to electronic signatures under the California Uniform Electronic Transactions Act."
+  },
+  "NM": {
+    "state_name": "New Mexico",
+    "governing_law": "This Agreement is governed by the laws of the State of New Mexico.",
+    "fee_dispute_notice": "Questions or disputes about fees should first be raised with the responsible professional; unresolved disputes may be referred to an available fee-arbitration program.",
+    "record_retention_years": 5,
+    "trust_account_name": "client trust account",
+    "e_signature_note": "The parties consent to electronic signatures under the New Mexico Uniform Electronic Transactions Act."
+  },
+  "NY": {
+    "state_name": "New York",
+    "governing_law": "This Agreement is governed by the laws of the State of New York.",
+    "fee_dispute_notice": "In the event of a fee dispute, you may have the right to seek arbitration under the state's fee dispute resolution program. A copy of the program's notice will be provided on request.",
+    "record_retention_years": 7,
+    "trust_account_name": "attorney escrow account",
+    "e_signature_note": "The parties consent to electronic signatures under the New York Electronic Signatures and Records Act."
+  },
+  "TX": {
+    "state_name": "Texas",
+    "governing_law": "This Agreement is governed by the laws of the State of Texas.",
+    "fee_dispute_notice": "Questions about fees should first be raised with the responsible professional. Information about the grievance process is available from the state bar.",
+    "record_retention_years": 5,
+    "trust_account_name": "client trust account (IOLTA)",
+    "e_signature_note": "The parties consent to electronic signatures under the Texas Uniform Electronic Transactions Act."
+  },
+  "FL": {
+    "state_name": "Florida",
+    "governing_law": "This Agreement is governed by the laws of the State of Florida.",
+    "fee_dispute_notice": "Fee disputes that cannot be resolved informally may be submitted to the applicable bar fee-arbitration program, where available.",
+    "record_retention_years": 6,
+    "trust_account_name": "client trust account",
+    "e_signature_note": "The parties consent to electronic signatures under the Florida Electronic Signature Act."
+  }
+}

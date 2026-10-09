@@ -1,0 +1,37 @@
+{
+  "client": {
+    "type": "organization",
+    "legal_name": "  Brightwater Ceramics LLC ",
+    "preferred_name": "Brightwater",
+    "contact": {
+      "email": "Ops@Brightwater-Ceramics.example",
+      "phone": "(505) 555-0142",
+      "preferred_channel": "email"
+    },
+    "address": {
+      "line1": "1200 Kiln Road",
+      "line2": "Suite 4",
+      "city": "Santa Fe",
+      "state": "nm",
+      "postal_code": "87501"
+    }
+  },
+  "matter": {
+    "practice_area": "contract_review",
+    "summary": "Review and negotiate a three-year wholesale supply agreement with a regional distributor, including exclusivity and termination terms.",
+    "jurisdiction": "NM",
+    "county": "Santa Fe",
+    "opposing_parties": ["Mesa Distribution Partners Inc."],
+    "urgency": "time_sensitive",
+    "deadlines": [{ "label": "Distributor signature deadline", "date": "2030-01-15" }]
+  },
+  "engagement": {
+    "fee_type": "hourly",
+    "hourly_rate_usd": 275,
+    "retainer_usd": 2500,
+    "responsible_professional": "Dana Whitfield"
+  },
+  "conflict_check": { "status": "cleared", "notes": "No hits in conflicts database." },
+  "consent": { "privacy_notice_acknowledged": true, "electronic_communications": true },
+  "intake": { "source": "web_form" }
+}

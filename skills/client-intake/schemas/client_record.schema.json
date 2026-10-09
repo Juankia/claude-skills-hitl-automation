@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Juankia/claude-skills-hitl-automation/schemas/client_record.schema.json",
+  "title": "Client intake record",
+  "description": "Normalized client + matter record produced by the client-intake skill.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["client_id", "client", "matter", "engagement", "conflict_check", "consent", "intake"],
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*-[0-9a-f]{6}$"
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "legal_name", "contact", "address"],
+      "properties": {
+        "type": { "enum": ["individual", "organization"] },
+        "legal_name": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "preferred_name": { "type": "string", "maxLength": 80 },
+        "contact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["email", "phone"],
+          "properties": {
+            "email": {
+              "type": "string",
+              "pattern": "^[^@\\s]+@[^@\\s]+\\.[a-z]{2,}$"
+            },
+            "phone": { "type": "string", "pattern": "^\\+1\\d{10}$" },
+            "preferred_channel": { "enum": ["email", "phone", "portal"] }
+          }
+        },
+        "address": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["line1", "city", "state", "postal_code"],
+          "properties": {
+            "line1": { "type": "string", "minLength": 3 },
+            "line2": { "type": "string" },
+            "city": { "type": "string", "minLength": 2 },
+            "state": { "$ref": "#/$defs/us_state" },
+            "postal_code": { "type": "string", "pattern": "^\\d{5}(-\\d{4})?$" }
+          }
+        }
+      }
+    },
+    "matter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["practice_area", "summary", "jurisdiction"],
+      "properties": {
+        "practice_area": {
+          "enum": [
+            "estate_planning",
+            "business_formation",
+            "contract_review",
+            "civil_litigation",
+            "real_estate",
+            "tax_advisory"
+          ]
+        },
+        "summary": { "type": "string", "minLength": 20, "maxLength": 2000 },
+        "jurisdiction": { "$ref": "#/$defs/us_state" },
+        "county": { "type": "string" },
+        "opposing_parties": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 2 },
+          "uniqueItems": true
+        },
+        "urgency": { "enum": ["routine", "time_sensitive", "emergency"] },
+        "deadlines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "date"],
+            "properties": {
+              "label": { "type": "string", "minLength": 3 },
+              "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+            }
+          }
+        }
+      }
+    },
+    "engagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fee_type", "responsible_professional"],
+      "properties": {
+        "fee_type": { "enum": ["flat", "hourly", "contingency"] },
+        "flat_fee_usd": { "type": "number", "exclusiveMinimum": 0 },
+        "hourly_rate_usd": { "type": "number", "exclusiveMinimum": 0 },
+        "contingency_percent": { "type": "number", "exclusiveMinimum": 0, "maximum": 40 },
+        "retainer_usd": { "type": "number", "minimum": 0 },
+        "responsible_professional": { "type": "string", "minLength": 3 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "fee_type": { "const": "flat" } } },
+          "then": { "required": ["flat_fee_usd"] }
+        },
+        {
+          "if": { "properties": { "fee_type": { "const": "hourly" } } },
+          "then": { "required": ["hourly_rate_usd", "retainer_usd"] }
+        },
+        {
+          "if": { "properties": { "fee_type": { "const": "contingency" } } },
+          "then": { "required": ["contingency_percent"] }
+        }
+      ]
+    },
+    "conflict_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "cleared", "flagged"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["privacy_notice_acknowledged", "electronic_communications"],
+      "properties": {
+        "privacy_notice_acknowledged": { "const": true },
+        "electronic_communications": { "type": "boolean" }
+      }
+    },
+    "intake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "completed_at"],
+      "properties": {
+        "status": { "enum": ["ready", "needs_review"] },
+        "completed_at": { "type": "string" },
+        "source": { "enum": ["web_form", "phone", "referral", "walk_in", "chat"] },
+        "review_reasons": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "us_state": {
+      "enum": [
+        "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS",
+        "KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC",
+        "ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
+      ]
+    }
+  }
+}
